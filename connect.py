@@ -1,6 +1,13 @@
+import os
 from web3 import Web3
+from dotenv import load_dotenv
 
-url = "https://eth-sepolia.g.alchemy.com/v2/ANE3rmvTrsensSqv4vIN8"
+load_dotenv()
+
+url = os.getenv("SEPOLIA_RPC_URL")
+
+if not url:
+    raise ValueError("SEPOLIA_RPC_URL is missing from .env")
 
 w3 = Web3(Web3.HTTPProvider(url))
 
